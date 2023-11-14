@@ -5,7 +5,7 @@ import { SummonerService } from './summoner/summoner.service';
 import { SummonerController } from './summoner/summoner.controller';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { TestControllerController } from './test-controller/test-controller.controller';
+import { HttpModule } from "@nestjs/axios";
 
 @Module({
   imports: [
@@ -19,9 +19,10 @@ import { TestControllerController } from './test-controller/test-controller.cont
       entities: [Summoner],
       synchronize: true,
     }),
+    HttpModule,
     TypeOrmModule.forFeature([Summoner]),
   ],
-  controllers: [AppController, TestControllerController, SummonerController],
+  controllers: [AppController, SummonerController],
   providers: [AppService, SummonerService],
 })
 export class AppModule {}
